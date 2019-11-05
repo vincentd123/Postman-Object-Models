@@ -4,7 +4,7 @@ Demo of how to create and use Postman Object Models.
 ## simple API
 Is a simple API implemented in node.js used with the postman collection. 
 
-I would open it in VS Code and run the start script in the NPM scripts tab. 
+I would open it in VS Code, then run npm install from the project folder (one time only) and then run the start script in the NPM scripts tab each time you want start the server. 
 
 You can check it by browsing to http://localhost:5000/api/v1/info. 
 
