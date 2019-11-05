@@ -1,0 +1,2733 @@
+{
+	"info": {
+		"_postman_id": "da70da85-2719-4cd5-bc19-2b87081fb5d2",
+		"name": "TestingMind - V1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "helpers",
+			"item": [
+				{
+					"name": "clear globals",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"pm.globals.clear();",
+									"console.log(`Globals cleared`);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/status",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Exploring",
+			"item": [
+				{
+					"name": "blank",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "799da301-2639-4985-b92c-7c6010065736",
+								"exec": [
+									"eval(pm.globals.get(`codeLibrary`));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f22ebfd6-9098-41b3-a46e-a7b142b9a715",
+								"exec": [
+									"pm.globals.set(`codeLibrary`,`",
+									"//=== Code Library === (an x is ok here whilst editing)",
+									"// put a backtick beginning of the line above for syntax highlighting",
+									"// but remove it before running it",
+									"",
+									"function checkInfoResponse(){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    ",
+									"    pm.test(\"response contains info\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        ",
+									"        //assertion",
+									"        pm.expect(resp.info).to.be.an('array');",
+									"        ",
+									"        resp.info.forEach(",
+									"            line => {pm.expect(line).to.be.a('string')}",
+									"            );",
+									"    });",
+									"}",
+									"",
+									"console.log('Code Library loaded');",
+									"",
+									"`); //end of code library, an x is ok here whilst editing"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/status",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    ",
+									"    resp.info.forEach(",
+									"        line => {pm.expect(line).to.be.a('string')}",
+									"        );",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/info",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rates/info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a483d918-4c52-447d-9be3-18d25407aa60",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    ",
+									"    resp.info.forEach(",
+									"        line => {pm.expect(line).to.be.a('string')}",
+									"        );",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/rates/info",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rates",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e6558d11-046b-4997-8e26-bed3d5de10f6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// check each rate is valid",
+									"pm.test(\"All rate objects are valid\", function () {",
+									"    const rates = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    rates.forEach(rate => {",
+									"        pm.expect(rate.rateId).to.be.a('number');",
+									"        pm.expect(rate.accountType).to.be.oneOf(['cheque','savings','overdraft','loanFixed12Months','loanFixed24Months']);",
+									"        pm.expect(rate.rate).to.be.a('number').and.be.within(0,100);",
+									"    });",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/rates",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "person route Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "961cd890-801c-4bd0-8eb8-33e12b9f7f8f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    ",
+									"    resp.info.forEach(",
+									"        line => {pm.expect(line).to.be.a('string')}",
+									"        );",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "person login route info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "64a14427-2f05-41ad-ba80-7c83cdb7c87c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    ",
+									"    resp.info.forEach(",
+									"        line => {pm.expect(line).to.be.a('string')}",
+									"        );",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Login response contains sessionId\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.sessionId).to.be.a('string');",
+									"    ",
+									"    //save",
+									"    pm.globals.set('sessionId',resp.sessionId);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Grace Hopper\",\n\t\"password\": \"Password123\"\n}"
+						},
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User's accounts List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38488956-2b71-4fdd-94dc-4a7d5827251b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"response contains array of valid accounts\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    pm.expect(resp).to.be.an('array');",
+									"    ",
+									"    resp.forEach(account => {",
+									"        pm.expect(account.accountId).to.be.a(`number`);",
+									"        pm.expect(account.type).to.be.oneOf(['cheque','savings','overdraft','loanFixed12Months','loanFixed24Months']);",
+									"        pm.expect(account.number).to.be.a(`string`).and.have.lengthOf(22);",
+									"        pm.expect(account.name).to.be.a(`string`);",
+									"        pm.expect(account.balance).to.be.a(`number`);",
+									"        pm.expect(account.rateId).to.be.a(`number`);",
+									"        pm.expect(account.links).to.be.an(`array`);",
+									"    });",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/accounts",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One Rate",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "19cb8a94-3027-4067-a072-80bf71eaf96a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/rate/3",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rate",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One user's account's transactions",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c4881e40-a8e6-4969-8124-99a4e41bbe54",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/account/2/transactions",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"account",
+								"2",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"pm.globals.unset('sessionId');"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "codeLibary info check",
+			"item": [
+				{
+					"name": "codeLibrary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "799da301-2639-4985-b92c-7c6010065736",
+								"exec": [
+									"eval(pm.globals.get(`codeLibrary`));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f22ebfd6-9098-41b3-a46e-a7b142b9a715",
+								"exec": [
+									"pm.globals.set(`codeLibrary`,`",
+									";//=== Code Library === (an x is ok here whilst editing)",
+									"// put a backtick beginning of the line above for syntax highlighting",
+									"// but remove it before running it",
+									"",
+									"function checkInfoResponse(){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    ",
+									"    pm.test(\"response contains info\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        ",
+									"        //assertion",
+									"        pm.expect(resp.info).to.be.an('array');",
+									"        ",
+									"        resp.info.forEach(",
+									"            line => {pm.expect(line).to.be.a('string')}",
+									"            );",
+									"    });",
+									"}",
+									"",
+									"function checkInfoResponseV2(){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    ",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.test(\"response contains info\", function () {",
+									"        pm.expect(resp.info).to.be.an('array');",
+									"        resp.info.forEach(",
+									"            line => {pm.expect(line).to.be.a('string')}",
+									"            );",
+									"    });",
+									"",
+									"    pm.test(\"response contains requests\", function () {",
+									"        pm.expect(resp.requests).to.be.an('array');",
+									"        resp.info.forEach(",
+									"            line => {pm.expect(line).to.be.a('string')}",
+									"            );",
+									"    });",
+									"",
+									"}",
+									"",
+									"console.log('Code Library loaded');",
+									"",
+									"`); //end of code library, an x is ok here whilst editing"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/status",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info orig",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    ",
+									"    resp.info.forEach(",
+									"        line => {pm.expect(line).to.be.a('string')}",
+									"        );",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/info",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info using codeLibrary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"eval(pm.globals.get(`codeLibrary`));",
+									"checkInfoResponse();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/info",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rates/info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a483d918-4c52-447d-9be3-18d25407aa60",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    ",
+									"    resp.info.forEach(",
+									"        line => {pm.expect(line).to.be.a('string')}",
+									"        );",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/rates/info",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rates",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "person route Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "961cd890-801c-4bd0-8eb8-33e12b9f7f8f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    ",
+									"    resp.info.forEach(",
+									"        line => {pm.expect(line).to.be.a('string')}",
+									"        );",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "person login route info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "64a14427-2f05-41ad-ba80-7c83cdb7c87c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    ",
+									"    resp.info.forEach(",
+									"        line => {pm.expect(line).to.be.a('string')}",
+									"        );",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "codeLibrary with Account class",
+			"item": [
+				{
+					"name": "Code Library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"pm.test(\"API is up\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.APIstatus).to.eql('up');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"exec": [
+									"pm.globals.set(`codeLibrary`,`",
+									"; //=== Code Library === (an x is ok here whilst editing)",
+									"// put a backtick beginning of the line above for syntax highlighting",
+									"// but remove it before running it",
+									"const debugging = true;",
+									"",
+									"function checkInfoResponse(){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    ",
+									"    pm.test(\"response contains info\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.info).to.be.an('array');",
+									"        resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"    pm.test(\"response contains list of requests\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.requests).to.be.an('array');",
+									"        resp.requests.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"}",
+									"const validAccountTypes = [",
+									"    'cheque',",
+									"    'savings',",
+									"    'overdraft',",
+									"    'loanFixed12Months',",
+									"    'loanFixed24Months'",
+									"];",
+									"class Account {",
+									"    constructor(accountObj){",
+									"        Object.assign(this,accountObj);",
+									"    }",
+									"    isValid() {",
+									"        try{",
+									"            pm.expect(this.accountId).to.be.a('number');",
+									"            pm.expect(this.type).to.be.oneOf(validAccountTypes);",
+									"            pm.expect(this.number).to.be.a('string').and.have.lengthOf(22);",
+									"            pm.expect(this.name).to.be.a('string');",
+									"            pm.expect(this.balance).to.be.a('number');",
+									"            pm.expect(this.rateId).to.be.a('number');",
+									"            pm.expect(this.links).to.be.an('array');",
+									"            return true;",
+									"        }catch(err){",
+									"            console.log('Account.valid(): Error - ' + err);",
+									"            console.log('accountObj',accountObj);",
+									"            return false;",
+									"        }",
+									"    }",
+									"}",
+									"",
+									"function handleGetAccountsResponse(response){",
+									"    if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"    ",
+									"    try{ var resp = response.json();} catch(err){console.log('Error: JSON Conversion error - ' + err );} ",
+									"",
+									"    pm.test(\"GetAccounts response code is 200\", function () {",
+									"        response.to.have.status(200);",
+									"        pm.test(\"GetAccounts response contains array of valid accounts\", function () {",
+									"            pm.expect(resp).to.be.an('array');",
+									"            resp.forEach((receivedAccount) => {",
+									"                let account = new Account(receivedAccount);",
+									"                pm.expect(account.isValid()).to.be.true;",
+									"            });",
+									"        });",
+									"        ",
+									"    });",
+									"}",
+									"`); //end of code library, an x is ok here whilst editing"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/status",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Login response contains sessionId\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    //assertion",
+									"    pm.expect(resp.sessionId).to.be.a('string');",
+									"    ",
+									"    //save",
+									"    pm.globals.set('sessionId',resp.sessionId);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Grace Hopper\",\n\t\"password\": \"Password123\"\n}"
+						},
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User's accounts List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38488956-2b71-4fdd-94dc-4a7d5827251b",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"handleGetAccountsResponse(pm.response);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/accounts",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"pm.globals.unset('sessionId');"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "codeLibrary with User class",
+			"item": [
+				{
+					"name": "Code Library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"pm.test(\"API is up\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.APIstatus).to.eql('up');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"exec": [
+									"pm.globals.set(`codeLibrary`,`",
+									"; //=== Code Library === (an x is ok here whilst editing)",
+									"// put a backtick beginning of the line above for syntax highlighting",
+									"// but remove it before running it",
+									"const debugging = true;",
+									"",
+									"function checkInfoResponse(){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    ",
+									"    pm.test(\"response contains info\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.info).to.be.an('array');",
+									"        resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"    pm.test(\"response contains list of requests\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.requests).to.be.an('array');",
+									"        resp.requests.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"}",
+									"",
+									"class Account {",
+									"    constructor(accountObj){",
+									"        if(!accountObj) throw new Error('Account.constructor(): Missing accountObj'); // must have an accountObj",
+									"        Object.assign(this,accountObj);",
+									"    }",
+									"    valid() {",
+									"        try{",
+									"            pm.expect(this.accountId).to.be.a('number');",
+									"            pm.expect(this.type).to.be.oneOf(['cheque','savings','overdraft','loanFixed12Months','loanFixed24Months']);",
+									"            pm.expect(this.number).to.be.a('string').and.have.lengthOf(22);",
+									"            pm.expect(this.name).to.be.a('string');",
+									"            pm.expect(this.balance).to.be.a('number');",
+									"            pm.expect(this.rateId).to.be.a('number');",
+									"            pm.expect(this.links).to.be.an('array');",
+									"            return true;",
+									"        }catch(err){",
+									"            console.log('Account.valid(): Error - ' + err);",
+									"            console.log('accountObj',accountObj);",
+									"            return false;",
+									"        }",
+									"    }",
+									"    setGlobalsFor(req){",
+									"        let props;",
+									"        switch(req){",
+									"            case 'rateRequest': props = [ \"rateId\" ]; break;",
+									"            case 'transactionsRequest': props = [ \"accountId\" ]; break;",
+									"        }",
+									"        props.forEach(property => {",
+									"            this[property] && pm.globals.set(property,this[property]);",
+									"        });",
+									"    }",
+									"}",
+									"",
+									"var User = class {",
+									"    constructor({name, password} = {name: \"\", password:\"\"}){",
+									"        this._name = name;",
+									"        this._password = password;",
+									"    }",
+									"    ",
+									"    get name() {return this._name;}",
+									"    set name(val) {console.log('Only set the name when constructing user');}",
+									"",
+									"    get password() {return this._password;}    ",
+									"    set password(val) {console.log('Only set the password when constructing user');}",
+									"",
+									"    setGlobalsFor(req){",
+									"        let props;",
+									"        switch(req){",
+									"            case 'login': props = [ \"name\", \"password\" ]; break;",
+									"            case 'protectedRequests': props = [ \"sessionId\" ]; break;",
+									"        }",
+									"        props.forEach(property => {",
+									"            this['_'+property] && pm.globals.set(property,this['_'+property]);",
+									"        });",
+									"    }",
+									"    ",
+									"    static handleLoginResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        try{ var resp = response.json();} catch(err){console.log('Error: JSON Conversion error - ' + err );} ",
+									"        ",
+									"        pm.test(\"Login response code is 200\", function () {",
+									"            response.to.have.status(200);",
+									"",
+									"            pm.test(\"Login response contains sessionId\", function () {",
+									"                pm.expect(resp.sessionId).to.be.a('string');",
+									"                resp.sessionId && pm.globals.set('sessionId',resp.sessionId);",
+									"            });",
+									"            ",
+									"        });",
+									"    }",
+									"",
+									"    static handleLogoutResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        pm.test(\"Logout response code is 204\", function () {",
+									"            response.to.have.status(204);",
+									"        });",
+									"        ",
+									"        pm.globals.unset('sessionId');",
+									"    }",
+									"} // end of User class",
+									"",
+									"`); //end of code library, an x is ok here whilst editing"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/status",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"User.handleLoginResponse(pm.response);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"var currentUser = new User({ \"name\":\"Grace Hopper\", \"password\": \"Password123\" });",
+									"currentUser.setGlobalsFor('login');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"{{name}}\",\n\t\"password\": \"{{password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"User.handleLogoutResponse(pm.response);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "codeLibrary with persisted User class",
+			"item": [
+				{
+					"name": "Code Library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"pm.test(\"API is up\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.APIstatus).to.eql('up');",
+									"});",
+									"",
+									"currentUser && currentUser.clearSession();",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"exec": [
+									"pm.globals.set(`codeLibrary`,`",
+									"; //=== Code Library === (an x is ok here whilst editing)",
+									"// put a backtick beginning of the line above for syntax highlighting",
+									"// but remove it before running it",
+									"const debugging = false;",
+									"",
+									"function checkInfoResponse(){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    ",
+									"    pm.test(\"response contains info\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.info).to.be.an('array');",
+									"        resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"    pm.test(\"response contains list of requests\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.requests).to.be.an('array');",
+									"        resp.requests.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"}",
+									"",
+									"class Account {",
+									"    constructor(accountObj){",
+									"        if(!accountObj) throw new Error('Account.constructor(): Missing accountObj'); // must have an accountObj",
+									"        Object.assign(this,accountObj);",
+									"    }",
+									"    valid() {",
+									"        try{",
+									"            pm.expect(this.accountId).to.be.a('number');",
+									"            pm.expect(this.type).to.be.oneOf(['cheque','savings','overdraft','loanFixed12Months','loanFixed24Months']);",
+									"            pm.expect(this.number).to.be.a('string').and.have.lengthOf(22);",
+									"            pm.expect(this.name).to.be.a('string');",
+									"            pm.expect(this.balance).to.be.a('number');",
+									"            pm.expect(this.rateId).to.be.a('number');",
+									"            pm.expect(this.links).to.be.an('array');",
+									"            return true;",
+									"        }catch(err){",
+									"            console.log('Account.valid(): Error - ' + err);",
+									"            console.log('accountObj',accountObj);",
+									"            return false;",
+									"        }",
+									"    }",
+									"    setGlobalsFor(req){",
+									"        let props;",
+									"        switch(req){",
+									"            case 'rateRequest': props = [ \"rateId\" ]; break;",
+									"            case 'transactionsRequest': props = [ \"accountId\" ]; break;",
+									"        }",
+									"        props.forEach(property => {",
+									"            this[property] && pm.globals.set(property,this[property]);",
+									"        });",
+									"    }",
+									"}",
+									"",
+									"var User = class {",
+									"    constructor({globVar, name, password} = {globVar: \"\", name: \"\", password:\"\"}){",
+									"        if(!globVar) throw new Error('User.constructor(): Missing value globVar'); // must have a globVar",
+									"        // check for, & load from globals",
+									"        const JSONStr = pm.globals.has(globVar) && pm.globals.get(globVar);",
+									"        JSONStr && Object.assign(this,JSON.parse(JSONStr));",
+									"        ",
+									"        this._globVar = globVar; // the name of the global variable with which to store this user",
+									"        ",
+									"        // allow name and password to be provided to constructor, or leave them unchanged",
+									"        this._name = name || this._name;",
+									"        this._password = password || this._password;",
+									"        ",
+									"        this.save();",
+									"    }",
+									"    save(){",
+									"        pm.globals.set(this._globVar,JSON.stringify(this));",
+									"        debugging && console.log('User(' + this.name + ') & saved to globals', this);",
+									"    }",
+									"    ",
+									"    set sessionId(newSessionId){",
+									"        !newSessionId && console.log('User.sessionId(newSessionId): Missing newSessionId value');",
+									"        if(!this._sessionId){",
+									"            this._sessionId = newSessionId;",
+									"            this.save();",
+									"        }else{",
+									"            console.log('User.sessionId(newSessionId): Attempting to set the session Id more than once');",
+									"        }",
+									"        ",
+									"        //always set the global sessionId, it is used in every protected route",
+									"        this.sessionId && pm.globals.set('sessionId',this.sessionId);",
+									"    }",
+									"    get sessionId() {return this._sessionId;}",
+									"    clearSession() {",
+									"        if(this._sessionId){",
+									"            delete this._sessionId;",
+									"            this.save();",
+									"        }",
+									"    }",
+									"    ",
+									"    get name() {return this._name;}",
+									"    set name(val) {console.log('Only set the name when constructing user');}",
+									"",
+									"    get password() {return this._password;}    ",
+									"    set password(val) {console.log('Only set the password when constructing user');}",
+									"    ",
+									"    setGlobalsFor(req){",
+									"        let props;",
+									"        switch(req){",
+									"            case 'login': props = [ \"name\", \"password\", \"sessionId\" ]; break;",
+									"            case 'protectedRequests': props = [ \"sessionId\" ]; break;",
+									"        }",
+									"        props.forEach(property => {",
+									"            this['_'+property] && pm.globals.set(property,this['_'+property]);",
+									"        });",
+									"    }",
+									"    ",
+									"    handleLoginResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        try{ var resp = response.json();} catch(err){console.log('Error: JSON Conversion error - ' + err );} ",
+									"        let user = this;",
+									"        ",
+									"        pm.test(\"Login response code is 200\", function () {",
+									"            response.to.have.status(200);",
+									"",
+									"            pm.test(\"Login response contains sessionId\", function () {",
+									"                pm.expect(resp.sessionId).to.be.a('string');",
+									"                user.sessionId = resp.sessionId;",
+									"            });",
+									"            ",
+									"        });",
+									"    }",
+									"    ",
+									"    handleLogoutResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        let user = this;",
+									"        ",
+									"        pm.test(\"Logout response code is 204\", function () {",
+									"            response.to.have.status(204);",
+									"            user.clearSession();",
+									"        });",
+									"    }",
+									"    ",
+									"    selectNewRandom(){",
+									"        const usersList = [",
+									"            ['John','Password123'],",
+									"            ['Jane','Password123'],",
+									"            ['Janice','Password123'],",
+									"            ['Jason','Password123']",
+									"        ];",
+									"        //select random set of creds from above list",
+									"        const credentials = usersList[Math.floor(Math.random() * usersList.length)];",
+									"        ",
+									"        this.clearSession();",
+									"        var newUser = new User({globVar: 'currentUser', name:credentials[0], password:credentials[1]});",
+									"        Object.assign(this,newUser);",
+									"        return this;",
+									"    }",
+									"}; // end User class",
+									"",
+									"var currentUser = new User({globVar: 'currentUser'});",
+									"currentUser.setGlobalsFor('protectedRequests'); //always load the current user's sessionId",
+									"",
+									"`); //end of code library, an x is ok here whilst editing"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/status",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"currentUser.handleLoginResponse(pm.response);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"//var currentUser = new User({ \"globVar\": \"currentUser\", \"name\":\"Grace Hopper\", \"password\": \"Password123\" });",
+									"var currentUser = new User({ \"globVar\": \"currentUser\" }).selectNewRandom();",
+									"",
+									"currentUser.setGlobalsFor('login');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"{{name}}\",\n\t\"password\": \"{{password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"currentUser.handleLogoutResponse(pm.response);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "codeLibrary with POMs",
+			"item": [
+				{
+					"name": "Code Library old Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"pm.test(\"API is up\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.APIstatus).to.eql('up');",
+									"});",
+									"",
+									"currentUser && currentUser.clearSession();",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"exec": [
+									"pm.globals.set(`codeLibrary`,`",
+									"; //=== Code Library === (an x is ok here whilst editing)",
+									"// put a backtick beginning of the line above for syntax highlighting",
+									"// but remove it before running it",
+									"const debugging = true;",
+									"",
+									"function checkInfoResponse(){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    ",
+									"    pm.test(\"response contains info\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.info).to.be.an('array');",
+									"        resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"    pm.test(\"response contains list of requests\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.requests).to.be.an('array');",
+									"        resp.requests.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"}",
+									"",
+									"class Account {",
+									"    constructor(accountObj){",
+									"        if(!accountObj) throw new Error('Account.constructor(): Missing accountObj'); // must have an accountObj",
+									"        Object.assign(this,accountObj);",
+									"    }",
+									"    valid() {",
+									"        try{",
+									"            pm.expect(this.accountId).to.be.a('number');",
+									"            pm.expect(this.type).to.be.oneOf(['cheque','savings','overdraft','loanFixed12Months','loanFixed24Months']);",
+									"            pm.expect(this.number).to.be.a('string').and.have.lengthOf(22);",
+									"            pm.expect(this.name).to.be.a('string');",
+									"            pm.expect(this.balance).to.be.a('number');",
+									"            pm.expect(this.rateId).to.be.a('number');",
+									"            pm.expect(this.links).to.be.an('array');",
+									"            return true;",
+									"        }catch(err){",
+									"            console.log('Account.valid(): Error - ' + err);",
+									"            console.log('accountObj',accountObj);",
+									"            return false;",
+									"        }",
+									"    }",
+									"    setGlobalsFor(req){",
+									"        let props;",
+									"        switch(req){",
+									"            case 'rateRequest': props = [ \"rateId\" ]; break;",
+									"            case 'transactionsRequest': props = [ \"accountId\" ]; break;",
+									"        }",
+									"        props.forEach(property => {",
+									"            this[property] && pm.globals.set(property,this[property]);",
+									"        });",
+									"    }",
+									"}",
+									"",
+									"class User {",
+									"    constructor({key, name, password} = {key: \"\", name: \"\", password:\"\"}){",
+									"        if(!key) throw new Error('User.constructor(): Missing key'); // must have a key",
+									"        // check for, & load from globals",
+									"        const JSONStr = pm.globals.has(key+'.JSON') && pm.globals.get(key+'.JSON');",
+									"        JSONStr && Object.assign(this,JSON.parse(JSONStr));",
+									"        ",
+									"        this._key = key; // the name of the global variable with which to store this user",
+									"        ",
+									"        // allow name and password to be provided to constructor, or leave them unchanged if they exists, otherwise use the defaults below",
+									"        this._name = name || this._name || \"Grace Hopper\";",
+									"        this._password = password || this._password || \"Password123\";",
+									"        ",
+									"        // cast object properties to their respective classes",
+									"        if(this._accounts && Array.isArray(this._accounts)){",
+									"            this._accounts = this._accounts.map(accountObj => new Account(accountObj));",
+									"        }else{",
+									"            this._accounts = [];",
+									"        }",
+									"        //this.save();",
+									"    }",
+									"    ",
+									"    get name() {return this._name;}",
+									"    set name(val) {console.log('Only set the name when constructing user');}",
+									"",
+									"    get password() {return this._password;}    ",
+									"    set password(val) {console.log('Only set the password when constructing user');}",
+									"    ",
+									"    set sessionId(newSessionId){",
+									"        !newSessionId && console.log('User.sessionId(newSessionId): Missing newSessionId value');",
+									"        if(!this._sessionId){",
+									"            this._sessionId = newSessionId;",
+									"            this.save();",
+									"        }else{",
+									"            console.log('User.sessionId(newSessionId): Attempting to set the session Id more than once');",
+									"        }",
+									"        ",
+									"        //always set the global sessionId, it is used in every protected route",
+									"        this.sessionId && pm.globals.set('sessionId',this.sessionId);",
+									"    }",
+									"    get sessionId() {return this._sessionId;}",
+									"    clearSession() {",
+									"        if(this._sessionId){",
+									"            delete this._sessionId;",
+									"            this.save();",
+									"        }",
+									"    }",
+									"    ",
+									"    get accounts() {return this._accounts;}",
+									"    clearAccounts(){ this._accounts = []; this.save();}",
+									"",
+									"    randomAccount(){",
+									"        return this._accounts[Math.floor(Math.random() * this.accounts.length)];",
+									"    }",
+									"",
+									"    setGlobalsFor(req){",
+									"        let props;",
+									"        switch(req){",
+									"            case 'login': props = [ \"name\", \"password\", \"sessionId\" ]; break;",
+									"            case 'protectedRequests': props = [ \"sessionId\" ]; break;",
+									"        }",
+									"        props.forEach(property => {",
+									"            this['_'+property] && pm.globals.set(property,this['_'+property]);",
+									"        });",
+									"    }",
+									"    ",
+									"    save(){",
+									"        pm.globals.set(this._key+'.JSON',JSON.stringify(this));",
+									"        debugging && console.log('User(' + this.name + ') & saved to globals', this);",
+									"    }",
+									"    ",
+									"    handleLoginResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        try{ var resp = response.json();} catch(err){console.log('Error: JSON Conversion error - ' + err );} ",
+									"        let user = this;",
+									"        ",
+									"        pm.test(\"Login response code is 200\", function () {",
+									"            response.to.have.status(200);",
+									"",
+									"            pm.test(\"Login response contains sessionId\", function () {",
+									"                pm.expect(resp.sessionId).to.be.a('string');",
+									"                user.sessionId = resp.sessionId;",
+									"            });",
+									"            ",
+									"        });",
+									"    }",
+									"    ",
+									"    handleGetAccountsResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        try{ var resp = response.json();} catch(err){console.log('Error: JSON Conversion error - ' + err );} ",
+									"        let user = this;",
+									"        ",
+									"        pm.test(\"GetAccounts response code is 200\", function () {",
+									"            response.to.have.status(200);",
+									"            ",
+									"            pm.test(\"GetAccounts response contains array of valid accounts\", function () {",
+									"                pm.expect(resp).to.be.an('array');",
+									"                user.clearAccounts();",
+									"                resp.forEach((receivedAccount) => {",
+									"                    let account = new Account(receivedAccount);",
+									"                    pm.expect(account.valid()).to.be.true;",
+									"                    user.accounts.push(new Account(account));",
+									"                });",
+									"                ",
+									"                user.save();",
+									"            });",
+									"            ",
+									"        });",
+									"",
+									"    }",
+									"",
+									"    handleLogoutResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        let user = this;",
+									"        ",
+									"        pm.test(\"Logout response code is 204\", function () {",
+									"            response.to.have.status(204);",
+									"            user.clearSession();",
+									"        });",
+									"    }",
+									"}",
+									"",
+									"var currentUser = new User({key: 'currentUser'});",
+									"currentUser.setGlobalsFor('protectedRequests'); //always load the current user's sessionId",
+									"",
+									"function selectRandomUser(){",
+									"    const usersList = [",
+									"        ['John','Password123'],",
+									"        ['Jane','Password123'],",
+									"        ['Janice','Password123'],",
+									"        ['Jason','Password123']",
+									"    ];",
+									"    //select random set of creds from above list",
+									"    const credentials = usersList[Math.floor(Math.random() * usersList.length)];",
+									"    ",
+									"    // save copy of currentUser (if any)",
+									"    pm.globals.has('currentUser.JSON') && pm.globals.set('prevUser.JSON', pm.globals.get('currentUser.JSON'));",
+									"    pm.globals.unset('currentUser.JSON'); // delete currentUser",
+									"    //create new user",
+									"    currentUser = new User({key: 'currentUser', name:credentials[0], password:credentials[1]});",
+									"}",
+									"",
+									"`); //end of code library, an x is ok here whilst editing"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/status",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Code Library",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"pm.test(\"API is up\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.APIstatus).to.eql('up');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"exec": [
+									"pm.globals.set(`codeLibrary`,`",
+									"; //=== Code Library === (an x is ok here whilst editing)",
+									"// put a backtick beginning of the line above for syntax highlighting",
+									"// but remove it before running it",
+									"const debugging = true;",
+									"",
+									"function checkInfoResponse(){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    ",
+									"    pm.test(\"response contains info\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.info).to.be.an('array');",
+									"        resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"    pm.test(\"response contains list of requests\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        pm.expect(resp.requests).to.be.an('array');",
+									"        resp.requests.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"    });    ",
+									"}",
+									"",
+									"class Account {",
+									"    constructor(accountObj){",
+									"        if(!accountObj) throw new Error('Account.constructor(): Missing accountObj'); // must have an accountObj",
+									"        Object.assign(this,accountObj);",
+									"    }",
+									"    valid() {",
+									"        try{",
+									"            pm.expect(this.accountId).to.be.a('number');",
+									"            pm.expect(this.type).to.be.oneOf(['cheque','savings','overdraft','loanFixed12Months','loanFixed24Months']);",
+									"            pm.expect(this.number).to.be.a('string').and.have.lengthOf(22);",
+									"            pm.expect(this.name).to.be.a('string');",
+									"            pm.expect(this.balance).to.be.a('number');",
+									"            pm.expect(this.rateId).to.be.a('number');",
+									"            pm.expect(this.links).to.be.an('array');",
+									"            return true;",
+									"        }catch(err){",
+									"            console.log('Account.valid(): Error - ' + err);",
+									"            console.log('accountObj',accountObj);",
+									"            return false;",
+									"        }",
+									"    }",
+									"    setGlobalsFor(req){",
+									"        let props;",
+									"        switch(req){",
+									"            case 'rateRequest': props = [ \"rateId\" ]; break;",
+									"            case 'transactionsRequest': props = [ \"accountId\" ]; break;",
+									"        }",
+									"        props.forEach(property => {",
+									"            this[property] && pm.globals.set(property,this[property]);",
+									"        });",
+									"    }",
+									"}",
+									"",
+									"var User = class {",
+									"    constructor({globVar, name, password} = {globVar: \"\", name: \"\", password:\"\"}){",
+									"        if(!globVar) throw new Error('User.constructor(): Missing value globVar'); // must have a globVar",
+									"        // check for, & load from globals",
+									"        const JSONStr = pm.globals.has(globVar) && pm.globals.get(globVar);",
+									"        JSONStr && Object.assign(this,JSON.parse(JSONStr));",
+									"        ",
+									"        this._globVar = globVar; // the name of the global variable with which to store this user",
+									"        ",
+									"        // allow name and password to be provided to constructor, or leave them unchanged",
+									"        this._name = name || this._name;",
+									"        this._password = password || this._password;",
+									"        ",
+									"        // cast object properties to their respective classes",
+									"        if(this._accounts && Array.isArray(this._accounts)){",
+									"            this._accounts = this._accounts.map(accountObj => new Account(accountObj));",
+									"        }else{",
+									"            this._accounts = [];",
+									"        }",
+									"        this.save();",
+									"    }",
+									"    save(){",
+									"        pm.globals.set(this._globVar,JSON.stringify(this));",
+									"        debugging && console.log('User(' + this.name + ') & saved to globals', this);",
+									"    }",
+									"    ",
+									"    set sessionId(newSessionId){",
+									"        !newSessionId && console.log('User.sessionId(newSessionId): Missing newSessionId value');",
+									"        if(!this._sessionId){",
+									"            this._sessionId = newSessionId;",
+									"            this.save();",
+									"        }else{",
+									"            console.log('User.sessionId(newSessionId): Attempting to set the session Id more than once');",
+									"        }",
+									"        ",
+									"        //always set the global sessionId, it is used in every protected route",
+									"        this.sessionId && pm.globals.set('sessionId',this.sessionId);",
+									"    }",
+									"    get sessionId() {return this._sessionId;}",
+									"    clearSession() {",
+									"        if(this._sessionId){",
+									"            delete this._sessionId;",
+									"            this.save();",
+									"        }",
+									"    }",
+									"    ",
+									"    get name() {return this._name;}",
+									"    set name(val) {console.log('Only set the name when constructing user');}",
+									"",
+									"    get password() {return this._password;}    ",
+									"    set password(val) {console.log('Only set the password when constructing user');}",
+									"    ",
+									"    setGlobalsFor(req){",
+									"        let props;",
+									"        switch(req){",
+									"            case 'login': props = [ \"name\", \"password\", \"sessionId\" ]; break;",
+									"            case 'protectedRequests': props = [ \"sessionId\" ]; break;",
+									"        }",
+									"        props.forEach(property => {",
+									"            this['_'+property] && pm.globals.set(property,this['_'+property]);",
+									"        });",
+									"    }",
+									"    ",
+									"    handleLoginResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        try{ var resp = response.json();} catch(err){console.log('Error: JSON Conversion error - ' + err );} ",
+									"        let user = this;",
+									"        ",
+									"        pm.test(\"Login response code is 200\", function () {",
+									"            response.to.have.status(200);",
+									"",
+									"            pm.test(\"Login response contains sessionId\", function () {",
+									"                pm.expect(resp.sessionId).to.be.a('string');",
+									"                user.sessionId = resp.sessionId;",
+									"            });",
+									"            ",
+									"        });",
+									"    }",
+									"    ",
+									"    handleLogoutResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        let user = this;",
+									"        ",
+									"        pm.test(\"Logout response code is 204\", function () {",
+									"            response.to.have.status(204);",
+									"            user.clearSession();",
+									"        });",
+									"    }",
+									"    ",
+									"    selectNewRandom(){",
+									"        const usersList = [",
+									"            ['John','Password123'],",
+									"            ['Jane','Password123'],",
+									"            ['Janice','Password123'],",
+									"            ['Jason','Password123']",
+									"        ];",
+									"        //select random set of creds from above list",
+									"        const credentials = usersList[Math.floor(Math.random() * usersList.length)];",
+									"        ",
+									"        this.clearSession();",
+									"        var newUser = new User({globVar: 'currentUser', name:credentials[0], password:credentials[1]});",
+									"        Object.assign(this,newUser);",
+									"        return this;",
+									"    }",
+									"",
+									"    get accounts() {return this._accounts;}",
+									"    clearAccounts(){ this._accounts = []; this.save();}",
+									"",
+									"    getRandomAccount(){",
+									"        return this.accounts[Math.floor(Math.random() * this.accounts.length)];",
+									"    }",
+									"",
+									"    handleGetAccountsResponse(response){",
+									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
+									"        ",
+									"        try{ var resp = response.json();} catch(err){console.log('Error: JSON Conversion error - ' + err );} ",
+									"        let user = this;",
+									"        ",
+									"        pm.test(\"GetAccounts response code is 200\", function () {",
+									"            response.to.have.status(200);",
+									"            ",
+									"            pm.test(\"GetAccounts response contains array of valid accounts\", function () {",
+									"                pm.expect(resp).to.be.an('array');",
+									"                user.clearAccounts();",
+									"                resp.forEach((receivedAccount) => {",
+									"                    let account = new Account(receivedAccount);",
+									"                    pm.expect(account.valid()).to.be.true;",
+									"                    user.accounts.push(new Account(account));",
+									"                });",
+									"                ",
+									"                user.save();",
+									"            });",
+									"            ",
+									"        });",
+									"",
+									"    }",
+									"}; // end User class",
+									"",
+									"var currentUser = new User({globVar: 'currentUser'});",
+									"currentUser.setGlobalsFor('protectedRequests'); //always load the current user's sessionId",
+									"",
+									"`); //end of code library, an x is ok here whilst editing",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/status",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"}); //*/",
+									"",
+									"/*",
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"checkInfoResponse(); //*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/info",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rates/info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a483d918-4c52-447d-9be3-18d25407aa60",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/rates/info",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rates",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e6558d11-046b-4997-8e26-bed3d5de10f6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// check each rate is valid",
+									"pm.test(\"All rate objects are valid\", function () {",
+									"    const rates = pm.response.json(); //this can throw exceptions",
+									"    ",
+									"    rates.forEach(rate => {",
+									"        pm.expect(rate.rateId).to.be.a('number');",
+									"        pm.expect(rate.accountType).to.be.oneOf(['cheque','savings','overdraft','loanFixed12Months','loanFixed24Months']);",
+									"        pm.expect(rate.rate).to.be.a('number').and.be.within(0,100);",
+									"    });",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/rates",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "person route Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "961cd890-801c-4bd0-8eb8-33e12b9f7f8f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"});",
+									"pm.test(\"response contains requests\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.requests).to.be.an('array');",
+									"    resp.requests.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "person login route info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "64a14427-2f05-41ad-ba80-7c83cdb7c87c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"response contains info\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.info).to.be.an('array');",
+									"    resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"/*pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Login response contains sessionId\", function () {",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.sessionId).to.be.a('string');",
+									"});//*/",
+									"",
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"currentUser.handleLoginResponse(pm.response);",
+									"//*/"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"//selectRandomUser();",
+									"",
+									"currentUser && currentUser.setGlobalsFor('login');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"{{name}}\",\n\t\"password\": \"{{password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User's accounts List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "38488956-2b71-4fdd-94dc-4a7d5827251b",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"currentUser.handleGetAccountsResponse(pm.response);",
+									"//*/",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/accounts",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One Rate",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "19cb8a94-3027-4067-a072-80bf71eaf96a",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"currentUser.getRandomAccount().setGlobalsFor(`rateRequest`);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/rate/{{rateId}}",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rate",
+								"{{rateId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "One user's account's transactions",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c4881e40-a8e6-4969-8124-99a4e41bbe54",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"currentUser.getRandomAccount().setGlobalsFor(`transactionsRequest`);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/account/{{accountId}}/transactions",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"account",
+								"{{accountId}}",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"currentUser.handleLogoutResponse(pm.response);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "sessionid",
+								"value": "{{sessionId}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostURL}}/api/v1/person/login",
+							"host": [
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
