@@ -64,7 +64,6 @@
 							"script": {
 								"id": "799da301-2639-4985-b92c-7c6010065736",
 								"exec": [
-									"eval(pm.globals.get(`codeLibrary`));",
 									""
 								],
 								"type": "text/javascript"
@@ -75,31 +74,7 @@
 							"script": {
 								"id": "f22ebfd6-9098-41b3-a46e-a7b142b9a715",
 								"exec": [
-									"pm.globals.set(`codeLibrary`,`",
-									"//=== Code Library === (an x is ok here whilst editing)",
-									"// put a backtick beginning of the line above for syntax highlighting",
-									"// but remove it before running it",
-									"",
-									"function checkInfoResponse(){",
-									"    pm.test(\"Status code is 200\", function () {",
-									"        pm.response.to.have.status(200);",
-									"    });",
-									"    ",
-									"    pm.test(\"response contains info\", function () {",
-									"        const resp = pm.response.json(); //this can throw exceptions",
-									"        ",
-									"        //assertion",
-									"        pm.expect(resp.info).to.be.an('array');",
-									"        ",
-									"        resp.info.forEach(",
-									"            line => {pm.expect(line).to.be.a('string')}",
-									"            );",
-									"    });",
-									"}",
-									"",
-									"console.log('Code Library loaded');",
-									"",
-									"`); //end of code library, an x is ok here whilst editing"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -109,15 +84,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{hostURL}}/api/v1/status",
-							"host": [
-								"{{hostURL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"status"
-							]
+							"raw": ""
 						}
 					},
 					"response": []
@@ -452,7 +419,7 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "sessionid",
+								"key": "sessionId",
 								"value": "{{sessionId}}",
 								"type": "text"
 							}
@@ -996,7 +963,6 @@
 									"                pm.expect(account.isValid()).to.be.true;",
 									"            });",
 									"        });",
-									"        ",
 									"    });",
 									"}",
 									"`); //end of code library, an x is ok here whilst editing"
@@ -1402,6 +1368,7 @@
 								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
 									"User.handleLogoutResponse(pm.response);"
 								],
 								"type": "text/javascript"
@@ -1569,6 +1536,7 @@
 									"            delete this._sessionId;",
 									"            this.save();",
 									"        }",
+									"        pm.globals.unset('sessionId');",
 									"    }",
 									"    ",
 									"    get name() {return this._name;}",
@@ -1681,8 +1649,8 @@
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
-									"//var currentUser = new User({ \"globVar\": \"currentUser\", \"name\":\"Grace Hopper\", \"password\": \"Password123\" });",
-									"var currentUser = new User({ \"globVar\": \"currentUser\" }).selectNewRandom();",
+									"var currentUser = new User({ \"globVar\": \"currentUser\", \"name\":\"Grace Hopper\", \"password\": \"Password123\" });",
+									"//var currentUser = new User({ \"globVar\": \"currentUser\" }).selectNewRandom();",
 									"",
 									"currentUser.setGlobalsFor('login');"
 								],
@@ -1728,6 +1696,7 @@
 								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
 									"currentUser.handleLogoutResponse(pm.response);"
 								],
 								"type": "text/javascript"
@@ -1772,282 +1741,15 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "codeLibrary with POMs",
+			"name": "codeLibrary with POMs (user with accounts)",
 			"item": [
-				{
-					"name": "Code Library old Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
-								"exec": [
-									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
-									"",
-									"pm.test(\"API is up\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    const resp = pm.response.json(); //this can throw exceptions",
-									"    pm.expect(resp.APIstatus).to.eql('up');",
-									"});",
-									"",
-									"currentUser && currentUser.clearSession();",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
-								"exec": [
-									"pm.globals.set(`codeLibrary`,`",
-									"; //=== Code Library === (an x is ok here whilst editing)",
-									"// put a backtick beginning of the line above for syntax highlighting",
-									"// but remove it before running it",
-									"const debugging = true;",
-									"",
-									"function checkInfoResponse(){",
-									"    pm.test(\"Status code is 200\", function () {",
-									"        pm.response.to.have.status(200);",
-									"    });",
-									"    ",
-									"    pm.test(\"response contains info\", function () {",
-									"        const resp = pm.response.json(); //this can throw exceptions",
-									"        pm.expect(resp.info).to.be.an('array');",
-									"        resp.info.forEach(line => {pm.expect(line).to.be.a('string')});",
-									"    });    ",
-									"    pm.test(\"response contains list of requests\", function () {",
-									"        const resp = pm.response.json(); //this can throw exceptions",
-									"        pm.expect(resp.requests).to.be.an('array');",
-									"        resp.requests.forEach(line => {pm.expect(line).to.be.a('string')});",
-									"    });    ",
-									"}",
-									"",
-									"class Account {",
-									"    constructor(accountObj){",
-									"        if(!accountObj) throw new Error('Account.constructor(): Missing accountObj'); // must have an accountObj",
-									"        Object.assign(this,accountObj);",
-									"    }",
-									"    valid() {",
-									"        try{",
-									"            pm.expect(this.accountId).to.be.a('number');",
-									"            pm.expect(this.type).to.be.oneOf(['cheque','savings','overdraft','loanFixed12Months','loanFixed24Months']);",
-									"            pm.expect(this.number).to.be.a('string').and.have.lengthOf(22);",
-									"            pm.expect(this.name).to.be.a('string');",
-									"            pm.expect(this.balance).to.be.a('number');",
-									"            pm.expect(this.rateId).to.be.a('number');",
-									"            pm.expect(this.links).to.be.an('array');",
-									"            return true;",
-									"        }catch(err){",
-									"            console.log('Account.valid(): Error - ' + err);",
-									"            console.log('accountObj',accountObj);",
-									"            return false;",
-									"        }",
-									"    }",
-									"    setGlobalsFor(req){",
-									"        let props;",
-									"        switch(req){",
-									"            case 'rateRequest': props = [ \"rateId\" ]; break;",
-									"            case 'transactionsRequest': props = [ \"accountId\" ]; break;",
-									"        }",
-									"        props.forEach(property => {",
-									"            this[property] && pm.globals.set(property,this[property]);",
-									"        });",
-									"    }",
-									"}",
-									"",
-									"class User {",
-									"    constructor({key, name, password} = {key: \"\", name: \"\", password:\"\"}){",
-									"        if(!key) throw new Error('User.constructor(): Missing key'); // must have a key",
-									"        // check for, & load from globals",
-									"        const JSONStr = pm.globals.has(key+'.JSON') && pm.globals.get(key+'.JSON');",
-									"        JSONStr && Object.assign(this,JSON.parse(JSONStr));",
-									"        ",
-									"        this._key = key; // the name of the global variable with which to store this user",
-									"        ",
-									"        // allow name and password to be provided to constructor, or leave them unchanged if they exists, otherwise use the defaults below",
-									"        this._name = name || this._name || \"Grace Hopper\";",
-									"        this._password = password || this._password || \"Password123\";",
-									"        ",
-									"        // cast object properties to their respective classes",
-									"        if(this._accounts && Array.isArray(this._accounts)){",
-									"            this._accounts = this._accounts.map(accountObj => new Account(accountObj));",
-									"        }else{",
-									"            this._accounts = [];",
-									"        }",
-									"        //this.save();",
-									"    }",
-									"    ",
-									"    get name() {return this._name;}",
-									"    set name(val) {console.log('Only set the name when constructing user');}",
-									"",
-									"    get password() {return this._password;}    ",
-									"    set password(val) {console.log('Only set the password when constructing user');}",
-									"    ",
-									"    set sessionId(newSessionId){",
-									"        !newSessionId && console.log('User.sessionId(newSessionId): Missing newSessionId value');",
-									"        if(!this._sessionId){",
-									"            this._sessionId = newSessionId;",
-									"            this.save();",
-									"        }else{",
-									"            console.log('User.sessionId(newSessionId): Attempting to set the session Id more than once');",
-									"        }",
-									"        ",
-									"        //always set the global sessionId, it is used in every protected route",
-									"        this.sessionId && pm.globals.set('sessionId',this.sessionId);",
-									"    }",
-									"    get sessionId() {return this._sessionId;}",
-									"    clearSession() {",
-									"        if(this._sessionId){",
-									"            delete this._sessionId;",
-									"            this.save();",
-									"        }",
-									"    }",
-									"    ",
-									"    get accounts() {return this._accounts;}",
-									"    clearAccounts(){ this._accounts = []; this.save();}",
-									"",
-									"    randomAccount(){",
-									"        return this._accounts[Math.floor(Math.random() * this.accounts.length)];",
-									"    }",
-									"",
-									"    setGlobalsFor(req){",
-									"        let props;",
-									"        switch(req){",
-									"            case 'login': props = [ \"name\", \"password\", \"sessionId\" ]; break;",
-									"            case 'protectedRequests': props = [ \"sessionId\" ]; break;",
-									"        }",
-									"        props.forEach(property => {",
-									"            this['_'+property] && pm.globals.set(property,this['_'+property]);",
-									"        });",
-									"    }",
-									"    ",
-									"    save(){",
-									"        pm.globals.set(this._key+'.JSON',JSON.stringify(this));",
-									"        debugging && console.log('User(' + this.name + ') & saved to globals', this);",
-									"    }",
-									"    ",
-									"    handleLoginResponse(response){",
-									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
-									"        ",
-									"        try{ var resp = response.json();} catch(err){console.log('Error: JSON Conversion error - ' + err );} ",
-									"        let user = this;",
-									"        ",
-									"        pm.test(\"Login response code is 200\", function () {",
-									"            response.to.have.status(200);",
-									"",
-									"            pm.test(\"Login response contains sessionId\", function () {",
-									"                pm.expect(resp.sessionId).to.be.a('string');",
-									"                user.sessionId = resp.sessionId;",
-									"            });",
-									"            ",
-									"        });",
-									"    }",
-									"    ",
-									"    handleGetAccountsResponse(response){",
-									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
-									"        ",
-									"        try{ var resp = response.json();} catch(err){console.log('Error: JSON Conversion error - ' + err );} ",
-									"        let user = this;",
-									"        ",
-									"        pm.test(\"GetAccounts response code is 200\", function () {",
-									"            response.to.have.status(200);",
-									"            ",
-									"            pm.test(\"GetAccounts response contains array of valid accounts\", function () {",
-									"                pm.expect(resp).to.be.an('array');",
-									"                user.clearAccounts();",
-									"                resp.forEach((receivedAccount) => {",
-									"                    let account = new Account(receivedAccount);",
-									"                    pm.expect(account.valid()).to.be.true;",
-									"                    user.accounts.push(new Account(account));",
-									"                });",
-									"                ",
-									"                user.save();",
-									"            });",
-									"            ",
-									"        });",
-									"",
-									"    }",
-									"",
-									"    handleLogoutResponse(response){",
-									"        if(!response) throw new Error('Error: User.handleLoginResponse() - missing response parameter');",
-									"        ",
-									"        let user = this;",
-									"        ",
-									"        pm.test(\"Logout response code is 204\", function () {",
-									"            response.to.have.status(204);",
-									"            user.clearSession();",
-									"        });",
-									"    }",
-									"}",
-									"",
-									"var currentUser = new User({key: 'currentUser'});",
-									"currentUser.setGlobalsFor('protectedRequests'); //always load the current user's sessionId",
-									"",
-									"function selectRandomUser(){",
-									"    const usersList = [",
-									"        ['John','Password123'],",
-									"        ['Jane','Password123'],",
-									"        ['Janice','Password123'],",
-									"        ['Jason','Password123']",
-									"    ];",
-									"    //select random set of creds from above list",
-									"    const credentials = usersList[Math.floor(Math.random() * usersList.length)];",
-									"    ",
-									"    // save copy of currentUser (if any)",
-									"    pm.globals.has('currentUser.JSON') && pm.globals.set('prevUser.JSON', pm.globals.get('currentUser.JSON'));",
-									"    pm.globals.unset('currentUser.JSON'); // delete currentUser",
-									"    //create new user",
-									"    currentUser = new User({key: 'currentUser', name:credentials[0], password:credentials[1]});",
-									"}",
-									"",
-									"`); //end of code library, an x is ok here whilst editing"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{hostURL}}/api/v1/status",
-							"host": [
-								"{{hostURL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"status"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Code Library",
 					"event": [
 						{
-							"listen": "test",
-							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
-								"exec": [
-									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
-									"",
-									"pm.test(\"API is up\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    const resp = pm.response.json(); //this can throw exceptions",
-									"    pm.expect(resp.APIstatus).to.eql('up');",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
 							"listen": "prerequest",
 							"script": {
-								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"id": "c3ad74ee-fb10-46ec-bdf8-fabe2d89a358",
 								"exec": [
 									"pm.globals.set(`codeLibrary`,`",
 									"; //=== Code Library === (an x is ok here whilst editing)",
@@ -2149,6 +1851,7 @@
 									"            delete this._sessionId;",
 									"            this.save();",
 									"        }",
+									"        pm.globals.unset('sessionId');",
 									"    }",
 									"    ",
 									"    get name() {return this._name;}",
@@ -2250,6 +1953,22 @@
 									"",
 									"`); //end of code library, an x is ok here whilst editing",
 									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a8b442c4-ff2a-4c57-9a80-10c3422f943c",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"pm.test(\"API is up\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.APIstatus).to.eql('up');",
+									"});"
 								],
 								"type": "text/javascript"
 							}
