@@ -84,7 +84,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "www.google.com",
+							"host": [
+								"www",
+								"google",
+								"com"
+							]
 						}
 					},
 					"response": []
