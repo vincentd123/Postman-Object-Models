@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "da70da85-2719-4cd5-bc19-2b87081fb5d2",
+		"_postman_id": "e6bf6f51-3d12-4cf3-92c4-da2a5da96bd8",
 		"name": "TestingMind - V1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"id": "0fabad11-779f-432d-8db2-381a6500db3c",
 								"exec": [
 									"pm.globals.clear();",
 									"console.log(`Globals cleared`);"
@@ -25,7 +25,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"id": "f91246b2-1663-442d-8112-90513e7e5375",
 								"exec": [
 									""
 								],
@@ -62,8 +62,9 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "799da301-2639-4985-b92c-7c6010065736",
+								"id": "6bf8bf81-65b9-49a1-996b-ff7a02e2a615",
 								"exec": [
+									"eval(pm.globals.get(`codeLibrary`));",
 									""
 								],
 								"type": "text/javascript"
@@ -72,9 +73,33 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "f22ebfd6-9098-41b3-a46e-a7b142b9a715",
+								"id": "0228e192-d2e6-4ea2-8b3d-8a315bc8d208",
 								"exec": [
-									""
+									"pm.globals.set(`codeLibrary`,`",
+									"//=== Code Library === (an x is ok here whilst editing)",
+									"// put a backtick beginning of the line above for syntax highlighting",
+									"// but remove it before running it",
+									"",
+									"function checkInfoResponse(){",
+									"    pm.test(\"Status code is 200\", function () {",
+									"        pm.response.to.have.status(200);",
+									"    });",
+									"    ",
+									"    pm.test(\"response contains info\", function () {",
+									"        const resp = pm.response.json(); //this can throw exceptions",
+									"        ",
+									"        //assertion",
+									"        pm.expect(resp.info).to.be.an('array');",
+									"        ",
+									"        resp.info.forEach(",
+									"            line => {pm.expect(line).to.be.a('string')}",
+									"            );",
+									"    });",
+									"}",
+									"",
+									"console.log('Code Library loaded');",
+									"",
+									"`); //end of code library, an x is ok here whilst editing"
 								],
 								"type": "text/javascript"
 							}
@@ -84,11 +109,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "www.google.com",
+							"raw": "{{hostURL}}/api/v1/status",
 							"host": [
-								"www",
-								"google",
-								"com"
+								"{{hostURL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"status"
 							]
 						}
 					},
@@ -100,7 +128,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"id": "d03d6504-c542-4fba-b42c-7e8c3e65d9f6",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -108,13 +136,13 @@
 									"",
 									"pm.test(\"response contains info\", function () {",
 									"    const resp = pm.response.json(); //this can throw exceptions",
-									"    ",
+									"",
 									"    //assertion",
 									"    pm.expect(resp.info).to.be.an('array');",
-									"    ",
+									"",
 									"    resp.info.forEach(",
-									"        line => {pm.expect(line).to.be.a('string')}",
-									"        );",
+									"        line => { pm.expect(line).to.be.a('string') }",
+									"    );",
 									"});",
 									""
 								],
@@ -145,7 +173,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a483d918-4c52-447d-9be3-18d25407aa60",
+								"id": "e989951e-2817-4b98-a445-1e76fd84a94a",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -191,7 +219,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e6558d11-046b-4997-8e26-bed3d5de10f6",
+								"id": "8000508a-ba11-41fc-90a0-4e9e95989e3e",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -237,7 +265,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "961cd890-801c-4bd0-8eb8-33e12b9f7f8f",
+								"id": "0a1cf0df-c23a-4ed7-81d6-4a566a632d08",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -282,7 +310,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "64a14427-2f05-41ad-ba80-7c83cdb7c87c",
+								"id": "80281797-016e-47b5-b1c8-36c354a6934f",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -328,19 +356,19 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "60280381-5dd1-4513-b18b-2c45478b85d7",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"pm.test(\"Login response contains sessionId\", function () {",
 									"    const resp = pm.response.json(); //this can throw exceptions",
-									"    ",
+									"",
 									"    //assertion",
 									"    pm.expect(resp.sessionId).to.be.a('string');",
-									"    ",
+									"",
 									"    //save",
-									"    pm.globals.set('sessionId',resp.sessionId);",
+									"    pm.globals.set('sessionId', resp.sessionId);",
 									"});",
 									""
 								],
@@ -350,7 +378,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "51d49fcb-3338-4c65-9dfc-9f699738e13e",
 								"exec": [
 									""
 								],
@@ -393,7 +421,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38488956-2b71-4fdd-94dc-4a7d5827251b",
+								"id": "7bc0514d-96c3-4381-a247-dc6b2a9d021c",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -424,7 +452,7 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "sessionId",
+								"key": "sessionid",
 								"value": "{{sessionId}}",
 								"type": "text"
 							}
@@ -450,7 +478,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "19cb8a94-3027-4067-a072-80bf71eaf96a",
+								"id": "de712d91-9c08-44e6-a274-d94a7ef10a07",
 								"exec": [
 									""
 								],
@@ -482,7 +510,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "c4881e40-a8e6-4969-8124-99a4e41bbe54",
+								"id": "811876b5-e9cd-4b6f-b785-1e7496cb4b40",
 								"exec": [
 									""
 								],
@@ -522,7 +550,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "7a1d84a0-61a7-400a-842d-15d25e17d234",
 								"exec": [
 									"pm.globals.unset('sessionId');"
 								],
@@ -532,7 +560,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "5474b7e4-0d19-4dba-90fb-426df63cf50e",
 								"exec": [
 									""
 								],
@@ -576,7 +604,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "799da301-2639-4985-b92c-7c6010065736",
+								"id": "788b00da-9246-4076-a90e-d87ce1aabe41",
 								"exec": [
 									"eval(pm.globals.get(`codeLibrary`));",
 									""
@@ -587,10 +615,10 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "f22ebfd6-9098-41b3-a46e-a7b142b9a715",
+								"id": "3754934a-3bc8-44fe-818e-4d51678638bc",
 								"exec": [
-									"pm.globals.set(`codeLibrary`,`",
-									";//=== Code Library === (an x is ok here whilst editing)",
+									"pm.globals.set(`codeLibrary`, `",
+									";//=== Code Library === (a code error is ok here whilst editing)",
 									"// put a backtick beginning of the line above for syntax highlighting",
 									"// but remove it before running it",
 									"",
@@ -607,7 +635,7 @@
 									"        ",
 									"        resp.info.forEach(",
 									"            line => {pm.expect(line).to.be.a('string')}",
-									"            );",
+									"        );",
 									"    });",
 									"}",
 									"",
@@ -621,14 +649,14 @@
 									"        pm.expect(resp.info).to.be.an('array');",
 									"        resp.info.forEach(",
 									"            line => {pm.expect(line).to.be.a('string')}",
-									"            );",
+									"        );",
 									"    });",
 									"",
 									"    pm.test(\"response contains requests\", function () {",
 									"        pm.expect(resp.requests).to.be.an('array');",
 									"        resp.info.forEach(",
 									"            line => {pm.expect(line).to.be.a('string')}",
-									"            );",
+									"        );",
 									"    });",
 									"",
 									"}",
@@ -664,7 +692,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"id": "31d0c290-a932-4afb-b2a7-ad7233ddb5ec",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -709,7 +737,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"id": "2ebbae7b-a628-4a90-b4d5-c33c1f938af7",
 								"exec": [
 									"eval(pm.globals.get(`codeLibrary`));",
 									"checkInfoResponse();"
@@ -741,23 +769,10 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a483d918-4c52-447d-9be3-18d25407aa60",
+								"id": "c6882e84-1810-45cf-83ec-ca8381ce5a19",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"response contains info\", function () {",
-									"    const resp = pm.response.json(); //this can throw exceptions",
-									"    ",
-									"    //assertion",
-									"    pm.expect(resp.info).to.be.an('array');",
-									"    ",
-									"    resp.info.forEach(",
-									"        line => {pm.expect(line).to.be.a('string')}",
-									"        );",
-									"});",
-									""
+									"eval(pm.globals.get(`codeLibrary`));",
+									"checkInfoResponse();"
 								],
 								"type": "text/javascript"
 							}
@@ -787,23 +802,10 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "961cd890-801c-4bd0-8eb8-33e12b9f7f8f",
+								"id": "c1d8b6ca-1e0e-429a-a5b6-e2c72d12a7b7",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"response contains info\", function () {",
-									"    const resp = pm.response.json(); //this can throw exceptions",
-									"    ",
-									"    //assertion",
-									"    pm.expect(resp.info).to.be.an('array');",
-									"    ",
-									"    resp.info.forEach(",
-									"        line => {pm.expect(line).to.be.a('string')}",
-									"        );",
-									"});",
-									""
+									"eval(pm.globals.get(`codeLibrary`));",
+									"checkInfoResponse();"
 								],
 								"type": "text/javascript"
 							}
@@ -832,23 +834,10 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "64a14427-2f05-41ad-ba80-7c83cdb7c87c",
+								"id": "cdc4edda-17b8-4049-9629-d2108fe99f3c",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"response contains info\", function () {",
-									"    const resp = pm.response.json(); //this can throw exceptions",
-									"    ",
-									"    //assertion",
-									"    pm.expect(resp.info).to.be.an('array');",
-									"    ",
-									"    resp.info.forEach(",
-									"        line => {pm.expect(line).to.be.a('string')}",
-									"        );",
-									"});",
-									""
+									"eval(pm.globals.get(`codeLibrary`));",
+									"checkInfoResponse();"
 								],
 								"type": "text/javascript"
 							}
@@ -884,7 +873,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"id": "dde4e036-99a6-4466-a04c-db5aafcac8a6",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -901,9 +890,9 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"id": "9bb95b8f-4d0e-4b55-8255-3d8f6cea2653",
 								"exec": [
-									"pm.globals.set(`codeLibrary`,`",
+									"pm.globals.set(`codeLibrary`, `",
 									"; //=== Code Library === (an x is ok here whilst editing)",
 									"// put a backtick beginning of the line above for syntax highlighting",
 									"// but remove it before running it",
@@ -968,6 +957,7 @@
 									"                pm.expect(account.isValid()).to.be.true;",
 									"            });",
 									"        });",
+									"        ",
 									"    });",
 									"}",
 									"`); //end of code library, an x is ok here whilst editing"
@@ -999,7 +989,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "7cb47a15-eb95-40d1-bc0f-dca9d8b87bf5",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1021,7 +1011,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "381a746a-907d-4313-ae05-b96d96eb05e0",
 								"exec": [
 									""
 								],
@@ -1064,7 +1054,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38488956-2b71-4fdd-94dc-4a7d5827251b",
+								"id": "6d8b1151-0421-465a-be4e-6f19116002d7",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -1105,7 +1095,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "1dda9723-08d8-4456-90ba-66923b9a012f",
 								"exec": [
 									"pm.globals.unset('sessionId');"
 								],
@@ -1115,7 +1105,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "41e9e30a-9f5e-4f68-a17a-c20703c68866",
 								"exec": [
 									""
 								],
@@ -1159,7 +1149,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"id": "d8aafc8f-3073-4bf7-9f90-9e6f9be351e8",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -1175,7 +1165,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"id": "21f57858-be5f-4205-b71a-cdc36cf5e86f",
 								"exec": [
 									"pm.globals.set(`codeLibrary`,`",
 									"; //=== Code Library === (an x is ok here whilst editing)",
@@ -1312,7 +1302,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "edda8d2e-1314-4239-a2f9-d4bb83bf4d64",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -1324,7 +1314,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "f3ecea5f-e7f7-4b37-8dd2-729e2aa2cae7",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -1370,10 +1360,9 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "a9b1e6e1-1c72-415f-9aa2-4f209c6ae2e4",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
-									"",
 									"User.handleLogoutResponse(pm.response);"
 								],
 								"type": "text/javascript"
@@ -1382,7 +1371,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "afc18b71-7aa3-4636-aeb9-d8ad5bdeb41e",
 								"exec": [
 									""
 								],
@@ -1426,7 +1415,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"id": "9773c243-fc3a-4c04-bb6a-f34434956ab6",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -1445,9 +1434,9 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "bf2d77bd-29d4-433b-88bd-f7d50b1b38c9",
+								"id": "6fb268fc-a36d-4366-9fe7-3bbf650a927d",
 								"exec": [
-									"pm.globals.set(`codeLibrary`,`",
+									"pm.globals.set(`codeLibrary`, `",
 									"; //=== Code Library === (an x is ok here whilst editing)",
 									"// put a backtick beginning of the line above for syntax highlighting",
 									"// but remove it before running it",
@@ -1541,7 +1530,6 @@
 									"            delete this._sessionId;",
 									"            this.save();",
 									"        }",
-									"        pm.globals.unset('sessionId');",
 									"    }",
 									"    ",
 									"    get name() {return this._name;}",
@@ -1638,7 +1626,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "a7349df2-a927-4566-b22c-b0ca6142aa8e",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -1650,12 +1638,12 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "d33442a7-c5f0-493f-b83f-7c70bf4cb17f",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
-									"var currentUser = new User({ \"globVar\": \"currentUser\", \"name\":\"Grace Hopper\", \"password\": \"Password123\" });",
-									"//var currentUser = new User({ \"globVar\": \"currentUser\" }).selectNewRandom();",
+									"//var currentUser = new User({ \"globVar\": \"currentUser\", \"name\":\"Grace Hopper\", \"password\": \"Password123\" });",
+									"var currentUser = new User({ \"globVar\": \"currentUser\" }).selectNewRandom();",
 									"",
 									"currentUser.setGlobalsFor('login');"
 								],
@@ -1698,10 +1686,9 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "8a5cd74f-3b81-47c3-ad69-5f82cb3d23ac",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
-									"",
 									"currentUser.handleLogoutResponse(pm.response);"
 								],
 								"type": "text/javascript"
@@ -1710,7 +1697,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "69b8a10a-c478-4ea8-b7ca-46fbc5e3c5a9",
 								"exec": [
 									""
 								],
@@ -1746,15 +1733,31 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "codeLibrary with POMs (user with accounts)",
+			"name": "codeLibrary with POMs",
 			"item": [
 				{
 					"name": "Code Library",
 					"event": [
 						{
+							"listen": "test",
+							"script": {
+								"id": "f7af6ad5-8383-4a71-b270-b2af23a1e4c6",
+								"exec": [
+									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
+									"",
+									"pm.test(\"API is up\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    const resp = pm.response.json(); //this can throw exceptions",
+									"    pm.expect(resp.APIstatus).to.eql('up');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
 							"listen": "prerequest",
 							"script": {
-								"id": "c3ad74ee-fb10-46ec-bdf8-fabe2d89a358",
+								"id": "08460c54-708b-4e3a-add3-ae9259b61b37",
 								"exec": [
 									"pm.globals.set(`codeLibrary`,`",
 									"; //=== Code Library === (an x is ok here whilst editing)",
@@ -1856,7 +1859,6 @@
 									"            delete this._sessionId;",
 									"            this.save();",
 									"        }",
-									"        pm.globals.unset('sessionId');",
 									"    }",
 									"    ",
 									"    get name() {return this._name;}",
@@ -1961,22 +1963,6 @@
 								],
 								"type": "text/javascript"
 							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "a8b442c4-ff2a-4c57-9a80-10c3422f943c",
-								"exec": [
-									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
-									"",
-									"pm.test(\"API is up\", function () {",
-									"    pm.response.to.have.status(200);",
-									"    const resp = pm.response.json(); //this can throw exceptions",
-									"    pm.expect(resp.APIstatus).to.eql('up');",
-									"});"
-								],
-								"type": "text/javascript"
-							}
 						}
 					],
 					"request": {
@@ -2002,7 +1988,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0654a7e1-af87-4a7f-87cb-56b80d6eadad",
+								"id": "16536f56-1dd4-493d-8d9c-2630fce6f36e",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2046,7 +2032,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a483d918-4c52-447d-9be3-18d25407aa60",
+								"id": "785dc7da-943b-4a3f-b376-6c79a440c214",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2086,7 +2072,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e6558d11-046b-4997-8e26-bed3d5de10f6",
+								"id": "b4c7628b-2b76-42ae-81e6-04e5a458ff5b",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2132,7 +2118,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "961cd890-801c-4bd0-8eb8-33e12b9f7f8f",
+								"id": "50eec55e-6189-4b72-9707-30c27536bea2",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2175,7 +2161,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "64a14427-2f05-41ad-ba80-7c83cdb7c87c",
+								"id": "73135a92-02b0-4e64-9ee0-db47edf98bba",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2214,7 +2200,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "fb2f8c7a-25e8-434b-8552-0ad77f726a26",
 								"exec": [
 									"/*pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2235,13 +2221,14 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "12208b8f-a277-4ca5-a9b3-6805ba2625dc",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
-									"//selectRandomUser();",
+									"//var currentUser = new User({ \"globVar\": \"currentUser\", \"name\":\"Grace Hopper\", \"password\": \"Password123\" });",
+									"var currentUser = new User({ \"globVar\": \"currentUser\" }).selectNewRandom();",
 									"",
-									"currentUser && currentUser.setGlobalsFor('login');"
+									"currentUser.setGlobalsFor('login');"
 								],
 								"type": "text/javascript"
 							}
@@ -2282,7 +2269,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "38488956-2b71-4fdd-94dc-4a7d5827251b",
+								"id": "e76adade-c7c4-4897-896a-227192782957",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -2325,7 +2312,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "19cb8a94-3027-4067-a072-80bf71eaf96a",
+								"id": "305b23bf-183a-4169-884d-022b68716e5e",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -2360,7 +2347,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "c4881e40-a8e6-4969-8124-99a4e41bbe54",
+								"id": "357eba1e-6d7c-4340-8a6b-2665c1e07cfb",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -2403,7 +2390,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2e502457-2b63-4dcb-afaa-384b698fe181",
+								"id": "475e11f4-7d90-4cc0-a755-913cec3adc9b",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									"",
@@ -2416,7 +2403,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2fdb2cf0-7f9f-4ef7-8de3-57589766b356",
+								"id": "20e10de4-a77c-4581-90a6-3b95e748073b",
 								"exec": [
 									"pm.globals.has(`codeLibrary`) && eval(pm.globals.get(`codeLibrary`)); //warning symbol is expected here",
 									""
