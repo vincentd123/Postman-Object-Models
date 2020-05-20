@@ -16,7 +16,7 @@ Then you should be able to run the entire collection, or just one of the folders
 Alternatively, in the Postman UI you can run each individual request in the order listed in a folder. 
 
 ## Presentation
-This project was presented at the [2019 TestingMind conference in Auckland, New Zealand](https://www.testingmind.com/event/test-automation-and-digital-qa-summit-auckland-2019/). 
+This project was presented at the [2019 TestingMind conference in Auckland, New Zealand](https://www.testingmind.com/event/test-automation-and-digital-qa-summit-auckland-2019/), as well as at [2020 TestingMind online conference for Sydney, Australia](https://www.testingmind.com/event/test-automation-digital-qa-summit-sydney-2020/)
 
-The google slides are [here](https://docs.google.com/presentation/d/1eMp6mbTgxW6nW4Q1QRQpX9aWXKN-vEcpcPSoLHtH_iA/edit?usp=sharing)
-(and if I have moved them there is a pptx copy inside the repo as well) 
+The google slides for the are [2019-Auckland](https://docs.google.com/presentation/d/1eMp6mbTgxW6nW4Q1QRQpX9aWXKN-vEcpcPSoLHtH_iA/edit?usp=sharing) and [2020-Sydney](https://docs.google.com/presentation/d/1H2GVaswSc4KueISltRGTL2-00J-7oFIjGFYwHjkhzxk/edit?usp=sharing)
+(and if I have moved them there are pptx copes inside the repo as well) 
